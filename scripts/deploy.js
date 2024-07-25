@@ -8,16 +8,12 @@ const hre = require("hardhat");
 
 async function main() {
 
-  const lock = await hre.ethers.deployContract("Lock", [unlockTime], {
-    value: lockedAmount,
-  });
+  const marketplace = await hre.ethers.deployContract("DecentralizedMarketplace");
 
-  await lock.waitForDeployment();
+  await marketplace.waitForDeployment();
 
   console.log(
-    `Lock with ${ethers.formatEther(
-      lockedAmount
-    )}ETH and unlock timestamp ${unlockTime} deployed to ${lock.target}`
+    `Decentralized Marketplace address is ${marketplace.target}`
   );
 }
 
